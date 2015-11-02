@@ -1,5 +1,5 @@
 name:           recaptcha-wreq
-version:        0.2.0
+version:        0.1.0
 license:        BSD3
 license-file:   LICENSE
 author:         Tero Laitinen 
@@ -11,12 +11,19 @@ cabal-version:  >= 1.8
 build-type:     Simple
 
 library
-    build-depends: base >= 4 && < 5
+    build-depends: 
+        base >= 4 && < 5
+        , wreq
+        , unordered-containers
+        , text
+        , aeson
+        , http-client
+
     ghc-options: -Wall  -O2
     exposed: True
     buildable: True
     exposed-modules:
-           ReCaptchaWreq
+           RecaptchaWreq
 
 source-repository head
   type:     git
