@@ -9,10 +9,10 @@ import qualified Control.Exception as E
 import qualified Data.Aeson as A
 import qualified Data.HashMap.Strict as HMS
 
-data RecaptchaResult = RecaptchaOK | RecaptchaError A.Value | HttpError HTTP.HttpException
+data RecaptchaResult = RecaptchaOK | RecaptchaError A.Value | RecaptchaHttpError HTTP.HttpException
 
 verifyRecaptcha :: Session -> Text -> Text -> Maybe Text -> IO RecaptchaResult
-verifyRecaptcha s secret response remoteIp = E.catch verify (return . HttpError)
+verifyRecaptcha s secret response remoteIp = E.catch verify (return . RecaptchaHttpError)
     where
         verify = do 
             r <- post s "https://www.google.com/recaptcha/api/siteverify" $ [
